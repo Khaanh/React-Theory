@@ -1,5 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+
+const list1 = (
+  <>
+    <li>Яблоко</li>
+    <li>Груша</li>
+    <li>Киви</li>
+  </>
+);
+
+const list2 = (
+  <>
+    <li>Яблоко</li>
+    <li>Груша</li>
+    <li>Малина</li>
+  </>
+);
 
 function App() {
   return (
