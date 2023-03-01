@@ -1,64 +1,75 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, { useReducer } from "react";
 import "./App.css";
 
-// import City from "./components/City";
-// import CitiesList from "./components/CitiesList";
+const reducer = (state, action) => {
+  console.log(action);
+  switch (action.type) {
+    case "increment": {
+      return { counter: state.counter + action.payload };
+    }
+    case "decrement": {
+      return { counter: state.counter - action.payload };
+    }
 
-// function createUser(name, surname) {
-//   const user = { name, surname };
-
-//   console.log(user);
-
-//   return user;
-// }
-
-// function App() {
-//   const [name, setName] = useState("");
-//   const [surname, setSurname] = useState("");
-//   const [counter, setCounter] = useState(0);
-//   const user = useMemo(() => createUser(name, surname), [name, surname]);
-
-//   return (
-//     <div>
-//       <button onClick={() => setCounter(counter + 1)}>
-//         На меня нажали {counter} раз
-//       </button>
-//       <br />
-//       <input
-//         type="text"
-//         value={name}
-//         onChange={(e) => setName(e.target.value)}
-//       />
-//       <br />
-//       <input
-//         type="text"
-//         value={surname}
-//         onChange={(e) => setSurname(e.target.value)}
-//       />
-//       <br />
-
-//       <pre>{JSON.stringify(user, null, 2)}</pre>
-//     </div>
-//   );
-// }
+    default: {
+      return { ...state };
+    }
+  }
+};
 
 function App() {
-  const [message, setMessage] = useState("Всем привет");
-  const [counter, setCounter] = useState(0);
-
-  const greeting = useCallback((text) => {
-    console.log(text);
-  }, []);
-
-  useEffect(() => {
-    greeting(message);
-  }, [greeting, message]);
+  const [state, dispatch] = useReducer(reducer, {
+    counter: 0,
+  });
 
   return (
-    <button onClick={() => setCounter(counter + 1)}>
-      На меня нажали {counter} раз
-    </button>
+    <div>
+      <button
+        onClick={() =>
+          dispatch({
+            type: "decrement",
+            payload: 1,
+          })
+        }
+      >
+        -1
+      </button>
+
+      <button
+        onClick={() =>
+          dispatch({
+            type: "decrement",
+            payload: 2,
+          })
+        }
+      >
+        -2
+      </button>
+
+      <span>{state.counter}</span>
+
+      <button
+        onClick={() => {
+          dispatch({
+            type: "increment",
+            payload: 1,
+          });
+        }}
+      >
+        +1
+      </button>
+
+      <button
+        onClick={() => {
+          dispatch({
+            type: "increment",
+            payload: 2,
+          });
+        }}
+      >
+        +2
+      </button>
+    </div>
   );
 }
-
 export default App;
