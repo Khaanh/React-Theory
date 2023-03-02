@@ -1,75 +1,25 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState, useContext } from "react";
+import ActionsCard from "./component/ActionsCard";
+import StatusCard from "./component/StatusCard";
+import Context from "./component/Context";
 import "./App.css";
 
-const reducer = (state, action) => {
-  console.log(action);
-  switch (action.type) {
-    case "increment": {
-      return { counter: state.counter + action.payload };
-    }
-    case "decrement": {
-      return { counter: state.counter - action.payload };
-    }
-
-    default: {
-      return { ...state };
-    }
-  }
-};
-
 function App() {
-  const [state, dispatch] = useReducer(reducer, {
-    counter: 0,
-  });
+  const [counter, setCounter] = useState(0);
+  const count = (n) => setCounter(counter + n);
+  const value = {
+    counter,
+    count,
+  };
 
   return (
-    <div>
-      <button
-        onClick={() =>
-          dispatch({
-            type: "decrement",
-            payload: 1,
-          })
-        }
-      >
-        -1
-      </button>
-
-      <button
-        onClick={() =>
-          dispatch({
-            type: "decrement",
-            payload: 2,
-          })
-        }
-      >
-        -2
-      </button>
-
-      <span>{state.counter}</span>
-
-      <button
-        onClick={() => {
-          dispatch({
-            type: "increment",
-            payload: 1,
-          });
-        }}
-      >
-        +1
-      </button>
-
-      <button
-        onClick={() => {
-          dispatch({
-            type: "increment",
-            payload: 2,
-          });
-        }}
-      >
-        +2
-      </button>
-    </div>
+    <Context.Provider value={value}>
+      <div className="container">
+        <StatusCard />
+        <ActionsCard />
+      </div>
+    </Context.Provider>
   );
 }
+
 export default App;
