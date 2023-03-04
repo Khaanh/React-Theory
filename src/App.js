@@ -1,30 +1,30 @@
 import React, { useState, useRef, useEffect } from "react";
-import useOne from "./component/useOne";
-import useCounter from "./component/useCounter";
+import Mouse from "./component/Mouse";
+import Card from "./component/Card";
 import "./App.css";
 
+function App() {
+  return (
+    <>
+      <Card />
+      <Card />
+      <Card />
+    </>
+  );
+}
+
 // function App() {
-//   const [counter, count] = useState(0);
-
-//   useOne(() => {
-//     console.log("Один раз");
-//   }, []);
-
 //   return (
-//     <button
-//       onClick={() => {
-//         count(counter + 1);
+//     <Mouse
+//       render={(data) => {
+//         return (
+//           <p>
+//             {data.x} {data.y}
+//           </p>
+//         );
 //       }}
-//     >
-//       Click: {counter}
-//     </button>
+//     />
 //   );
 // }
 
-function App() {
-  const { counter, count } = useCounter(0);
-
-  useOne(() => {});
-  return <button onClick={() => count(counter + 1)}>Click: {counter}</button>;
-}
 export default App;
