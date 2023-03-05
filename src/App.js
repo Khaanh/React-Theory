@@ -5,26 +5,16 @@ import "./App.css";
 
 function App() {
   return (
-    <>
-      <Card />
-      <Card />
-      <Card />
-    </>
+    <Mouse
+      render={(data) => {
+        return (
+          <p>
+            {data.x} {data.y}
+          </p>
+        );
+      }}
+    />
   );
 }
-
-// function App() {
-//   return (
-//     <Mouse
-//       render={(data) => {
-//         return (
-//           <p>
-//             {data.x} {data.y}
-//           </p>
-//         );
-//       }}
-//     />
-//   );
-// }
 
 export default App;
