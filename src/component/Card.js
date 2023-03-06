@@ -8,15 +8,7 @@ const cardStyle = {
 };
 
 const Card = (props) => {
-  return (
-    <Mouse
-      render={({ x, y }) => (
-        <div style={cardStyle}>
-          {x}: {y}
-        </div>
-      )}
-    />
-  );
+  return;
 };
 
 export default Card;
