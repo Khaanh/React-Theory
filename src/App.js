@@ -1,40 +1,18 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import Mouse from "./component/Mouse";
-import Card from "./component/Card";
+import UserCard from "./component/UserCard";
 import "./App.css";
 
-const ENTER = "Enter";
-
+const users = [
+  { id: 1, name: "Alex", surname: "Danchin" },
+  { id: 2, name: "Michael", surname: "Pop" },
+  { id: 3, name: "Artur", surname: "John" },
+];
 function App() {
-  const ref = useRef();
-  const clickHandler = useCallback((e) => {
-    console.log(ref.current.value);
-  });
-
-  const keyUpHandler = useCallback((e) => {
-    const { key } = e;
-    if (key === ENTER) {
-      clickHandler();
-    }
-  });
-
-  useEffect(
-    (e) => {
-      if (ref.current) {
-        ref.current.addEventListener("keyup", keyUpHandler);
-
-        return () => {
-          ref.current.removeEventListener("keyup", keyUpHandler);
-        };
-      }
-    },
-    [keyUpHandler]
-  );
-
   return (
     <div>
-      <input ref={ref} />
-      <button onClick={clickHandler}>Send</button>
+      <UserCard users={users[0]} onSendMessage={() => console.log(users[0])} />
+      <UserCard users={users[1]} />
+      <UserCard users={users[2]} />
     </div>
   );
 }
