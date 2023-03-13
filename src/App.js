@@ -1,18 +1,29 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
-import UserCard from "./component/UserCard";
+import { Component as ParentToChild } from "./component/parent-to-child/Component";
+import { Component as ChildToParent } from "./component/child-to-parent/Component";
+import { Component as SiblingToSibling } from "./component/sibling-to-sibling/Component";
+import { Component as ParentToGrandchild } from "./component/parent-to-grandchild/Component";
 import "./App.css";
 
-const users = [
-  { id: 1, name: "Alex", surname: "Danchin" },
-  { id: 2, name: "Michael", surname: "Pop" },
-  { id: 3, name: "Artur", surname: "John" },
-];
 function App() {
   return (
-    <div>
-      <UserCard users={users[0]} onSendMessage={() => console.log(users[0])} />
-      <UserCard users={users[1]} />
-      <UserCard users={users[2]} />
+    <div className="app-container">
+      <div className="example-container">
+        <p>Parent to Child</p>
+        <ParentToChild />
+      </div>
+      <div className="example-container">
+        <p>Child to Parent</p>
+        <ChildToParent />
+      </div>
+      <div className="example-container">
+        <p>Sibling to Sibling</p>
+        <SiblingToSibling />
+      </div>
+      <div className="example-container">
+        <p>Parent to Grandchild</p>
+        <ParentToGrandchild />
+      </div>
     </div>
   );
 }
